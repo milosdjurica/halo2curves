@@ -51,8 +51,11 @@ jobs:
 
       - name: Download no_std target
         run: rustup target add thumbv7em-none-eabi
-      - name: Build
-        # Ensure that features build on `thumbv7em-none-eabi` no_std target
+      - name: Build without features
+        # Ensure that lib builds on `thumbv7em-none-eabi` no_std target without features
+        run: cargo build --release --target thumbv7em-none-eabi --no-default-features
+      - name: Build with features
+        # Ensure that lib builds on `thumbv7em-none-eabi` no_std target with features
         run: cargo build --release --target thumbv7em-none-eabi --no-default-features --features ${{ matrix.feature }}
   compat:
     if: github.event.pull_request.draft == false
