@@ -49,7 +49,9 @@ jobs:
       - name: Download no_std target
         run: rustup target add thumbv7em-none-eabi
 
+      #  Check if build passes on `thumbv7em-none-eabi` no_std target with and without specific features (default, bn256-table and derive_serde)
       - name: Build
+        # Script that checks if feature is empty or script should be ran with feature
         run: |
           if [ -z "${{ matrix.feature }}" ]; then
             cargo build --release --target thumbv7em-none-eabi --no-default-features
