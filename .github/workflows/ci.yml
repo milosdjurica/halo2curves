@@ -41,22 +41,21 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - feature: default
-          - feature: bn256-table
-          - feature: derive_serde
+        feature: [default, bn256-table, derive_serde, ""]
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
 
       - name: Download no_std target
         run: rustup target add thumbv7em-none-eabi
-      - name: Build without features
-        # Ensure that lib builds on `thumbv7em-none-eabi` no_std target without features
-        run: cargo build --release --target thumbv7em-none-eabi --no-default-features
-      - name: Build with features
-        # Ensure that lib builds on `thumbv7em-none-eabi` no_std target with features
-        run: cargo build --release --target thumbv7em-none-eabi --no-default-features --features ${{ matrix.feature }}
+
+      - name: Build
+        run: |
+          if [ -z "${{ matrix.feature }}" ]; then
+            cargo build --release --target thumbv7em-none-eabi --no-default-features
+          else
+            cargo build --release --target thumbv7em-none-eabi --no-default-features --features ${{ matrix.feature }}
+          fi
   compat:
     if: github.event.pull_request.draft == false
     name: Wasm-compatibility
