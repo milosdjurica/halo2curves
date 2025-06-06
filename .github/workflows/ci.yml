@@ -53,7 +53,7 @@ jobs:
         run: rustup target add thumbv7em-none-eabi
       - name: Build
         # Ensure that features build on `thumbv7em-none-eabi` no_std target
-        run: cargo build --release --all-targets --no-default-features --features "${{ matrix.feature }} --target thumbv7em-none-eabi"
+        run: cargo build --release --all-targets --no-default-features --features ${{ matrix.feature }} --target thumbv7em-none-eabi
   compat:
     if: github.event.pull_request.draft == false
     name: Wasm-compatibility
