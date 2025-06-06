@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - no_std_ci
 env:
   CARGO_TERM_COLOR: always
   # Disable incremental compilation.
