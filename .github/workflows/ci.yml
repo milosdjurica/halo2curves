@@ -42,8 +42,6 @@ jobs:
     strategy:
       matrix:
         include:
-          # first run without all features
-          - feature:
           - feature: default
           - feature: bn256-table
           - feature: derive_serde
