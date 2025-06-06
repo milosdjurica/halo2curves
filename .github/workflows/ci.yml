@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - no_std_ci
 env:
   CARGO_TERM_COLOR: always
   # Disable incremental compilation.
@@ -119,7 +120,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Use typos with config file
         uses: crate-ci/typos@master
-        with: 
+        with:
           config: .config/typos.toml
 
   bench:
