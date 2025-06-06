@@ -14,7 +14,6 @@ pub(crate) fn from_to_repr_test<F: PrimeField>(mut rng: impl RngCore, n: usize) 
         let b = F::from_repr(bytes).unwrap();
         assert_eq!(a, b);
     }
-    // byte serialization
 }
 
 // Tests to_raw_bytes / from_raw_bytes + read_raw /write_raw
