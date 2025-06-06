@@ -1,4 +1,4 @@
-#[cfg(features = "std")]
+#[cfg(feature = "std")]
 use crate::serde::SerdeObject;
 #[cfg(any(feature = "std", feature = "derive_serde"))]
 use ff::Field;
@@ -18,7 +18,7 @@ pub(crate) fn from_to_repr_test<F: PrimeField>(mut rng: impl RngCore, n: usize) 
 }
 
 // Tests to_raw_bytes / from_raw_bytes + read_raw /write_raw
-#[cfg(features = "std")]
+#[cfg(feature = "std")]
 pub(crate) fn from_to_raw_bytes_test<F: Field + SerdeObject>(mut rng: impl RngCore, n: usize) {
     for _ in 0..n {
         let a = F::random(&mut rng);
@@ -91,7 +91,7 @@ pub(crate) fn test_bits<F: ff::PrimeFieldBits>(mut rng: impl RngCore, n: usize) 
 macro_rules! serde_test {
     ($field:ident) => {
         test!(serde, $field, from_to_repr_test, 100_000);
-        #[cfg(features = "std")]
+        #[cfg(feature = "std")]
         test!(serde, $field, from_to_raw_bytes_test, 100_000);
         #[cfg(feature = "derive_serde")]
         test!(serde, $field, derive_serde_test, 100_000);

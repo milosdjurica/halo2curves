@@ -78,7 +78,7 @@ mod test {
 
     use super::*;
     use crate::curve_testing_suite;
-    #[cfg(features = "std")]
+    #[cfg(feature = "std")]
     use crate::serde::SerdeObject;
 
     curve_testing_suite!(

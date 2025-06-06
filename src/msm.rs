@@ -557,9 +557,9 @@ mod test {
     use rand_core::OsRng;
 
     use crate::bn256::{Fr, G1Affine, G1};
-    #[cfg(features = "std")]
+    #[cfg(feature = "std")]
     use crate::CurveAffine;
-    #[cfg(features = "std")]
+    #[cfg(feature = "std")]
     use ark_std::{end_timer, start_timer};
 
     #[test]
@@ -608,7 +608,7 @@ mod test {
         }
     }
 
-    #[cfg(features = "std")]
+    #[cfg(feature = "std")]
     fn run_msm_cross<C: CurveAffine>(min_k: usize, max_k: usize) {
         use plonky2_maybe_rayon::*;
 
@@ -641,7 +641,7 @@ mod test {
     }
 
     #[test]
-    #[cfg(features = "std")]
+    #[cfg(feature = "std")]
     fn test_msm_cross() {
         run_msm_cross::<G1Affine>(14, 18);
     }

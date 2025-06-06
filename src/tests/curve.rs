@@ -371,7 +371,7 @@ macro_rules! curve_testing_suite {
     };
 
     ($($curve: ident),*, "hash_to_curve") => {
-        #[cfg(features = "std")]
+        #[cfg(feature = "std")]
         macro_rules! hash_to_curve_test {
             ($c: ident) => {
                 let hasher = $c::hash_to_curve("test");
@@ -387,7 +387,7 @@ macro_rules! curve_testing_suite {
         }
 
         #[test]
-        #[cfg(features = "std")]
+        #[cfg(feature = "std")]
         fn test_hash_to_curve() {
             use rand_core::{OsRng, RngCore};
             use std::iter;

@@ -340,7 +340,7 @@ mod test {
 
     use super::*;
     use crate::arithmetic::CurveEndo;
-    #[cfg(features = "std")]
+    #[cfg(feature = "std")]
     use crate::serde::SerdeObject;
 
     crate::curve_testing_suite!(G2);

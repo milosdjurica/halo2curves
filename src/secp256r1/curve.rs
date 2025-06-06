@@ -118,7 +118,7 @@ mod test {
     use rand_core::OsRng;
 
     use super::*;
-    #[cfg(features = "std")]
+    #[cfg(feature = "std")]
     use crate::serde::SerdeObject;
     use crate::tests::curve::TestH2C;
     crate::curve_testing_suite!(Secp256r1);

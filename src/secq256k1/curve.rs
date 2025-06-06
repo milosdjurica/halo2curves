@@ -85,7 +85,7 @@ impl Secq256k1 {
 #[cfg(test)]
 mod test {
 
-    #[cfg(features = "std")]
+    #[cfg(feature = "std")]
     use crate::serde::SerdeObject;
 
     use group::UncompressedEncoding;
