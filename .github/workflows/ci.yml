@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - ci
 env:
   CARGO_TERM_COLOR: always
   # Disable incremental compilation.
@@ -34,6 +35,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  no_std:
+    if: github.event.pull_request.draft == false
+    name: no_std-compatibility
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - feature: default
+          - feature: bn256-table
+          - feature: derive_serde
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+
+      - name: Download no_std target
+        run: rustup target add thumbv7em-none-eabi
+      - name: Build
+        # Ensure that features build on `thumbv7em-none-eabi` no_std target
+        run: cargo build --release --all-targets --no-default-features --features "${{ matrix.feature }} --target thumbv7em-none-eabi"
   compat:
     if: github.event.pull_request.draft == false
     name: Wasm-compatibility
